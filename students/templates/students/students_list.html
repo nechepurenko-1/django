@@ -1,3 +1,4 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -9,7 +10,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
   <link rel="stylesheet"
-        href="./css/main.css">
+        href="{% static "css/main.css" %}">
 </head>
 <body>
 
@@ -66,12 +67,13 @@
             </tr>
           </thead>
           <tbody>
+            {% for student in students %}
             <tr>
-              <td>1</td>
-              <td><img class="img-circle" src="./img/1.jpeg" height="30" width="30" /></td>
-              <td><a href="{% url "students_edit" 1 %}">Корост</td>
-              <td><a href="{% url "students_edit" 1 %}">Андрій</td>
-              <td>2123</td>
+              <td>{{ forloop.counter }}</td>
+              <td><img class="img-circle" src="{% static student.image %}" height="30" width="30" /></td>
+              <td><a href="{% url "students_edit" student.id %}">{{ student.last_name }}</td>
+              <td><a href="{% url "students_edit" student.id %}">{{ student.first_name }}</td>
+              <td>{{ student.ticket }}</td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-default dropdown-toggle"
@@ -79,16 +81,17 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="{% url "students_edit" 1 %}">Редагувати</a></li>
-                    <li><a href="/journal/1">Відвідування</a></li>
-                    <li><a href="{% url "students_delete" 1 %}">Видалити</a></li>
+                    <li><a href="{% url "students_edit" student.id %}">Редагувати</a></li>
+                    <li><a href="/journal/{{ student.id }}">Відвідування</a></li>
+                    <li><a href="{% url "students_delete" student.id %}">Видалити</a></li>
                   </ul>
                 </div>
               </td>
             </tr>
-            <tr>
+            {% endfor %}
+            <!--<tr>
               <td>2</td>
-              <td><img class="img-circle" src="./img/2.jpeg" height="30" width="30" /></td>
+              <td><img class="img-circle" src="{% static "img/2.jpeg" %}" height="30" width="30" /></td>
               <td><a href="/students/2/edit">Подоба</td>
               <td><a href="/students/2/edit">Віталій</td>
               <td>254</td>
@@ -108,7 +111,7 @@
             </tr>
             <tr>
               <td>3</td>
-              <td><img class="img-circle" src="./img/3.jpg" height="30" width="30" /></td>
+              <td><img class="img-circle" src="{% static "img/3.jpg" %}" height="30" width="30" /></td>
               <td><a href="/students/3/edit">Притула</td>
               <td><a href="/students/3/edit">Тарас</td>
               <td>5332</td>
@@ -125,7 +128,7 @@
                   </ul>
                 </div>
               </td>
-            </tr>
+            </tr>-->
           </tbody>
         </table>
         <!-- End Students Listing -->
