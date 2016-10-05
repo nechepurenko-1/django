@@ -32,7 +32,7 @@
                   </button>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
-                    <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
+                    <li><a href="{% url "journal_edit"  group.id %}">Відвідування</a></li>
                     <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
                   </ul>
                 </div>
@@ -44,12 +44,6 @@
         </table>
         <!-- End Students Listing -->
 
-        <nav>
-          <ul class="pagination">
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">Далі</a></li>
-          </ul>
-        </nav>
+       {% include "students/pagination.html" %}
 {% endblock content %}
         
