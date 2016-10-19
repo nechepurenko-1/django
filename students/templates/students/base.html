@@ -38,9 +38,12 @@
     <div class="row" id="sub-header"> 
       <div class="col-xs-12">
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation"{% if request.path == '/' %}class="active"{% endif %}><a href="{% url "home" %}">Студенти</a></li>
-          <li role="presentation"{% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url "journal" %}">Відвідування</a></li>
-          <li role="presentation"{% if '/groups' in request.path %}class="active"{% endif %}><a href="{% url "groups" %}">Групи</a></li>
+          {% url 'home' as url %}
+          <li role="presentation"{% ifequal request.path url %}class="active"{% endifequal %}><a href="{% url "home" %}">Студенти</a></li>
+          {% url 'journal' as url %}
+          <li role="presentation"{% ifequal request.path url %}class="active"{% endifequal %}><a href="{% url "journal" %}">Відвідування</a></li>
+          {% url 'groups' as url %}
+          <li role="presentation"{% ifequal request.path url %}class="active"{% endifequal %}><a href="{% url "groups" %}">Групи</a></li>
         </ul>
       </div>
     </div>
@@ -64,7 +67,7 @@
     {% block footer %}
     <div class="row" id="footer">
       <div class="col-xs-12">
-        &copy; 2014 Сервіс Обліку Студентів
+        &copy; 2016 Сервіс Обліку Студентів
       </div>
     </div>
     {% endblock footer %}

@@ -1,0 +1,95 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Журнал відвідування{% endblock meta_title %}
+{% block title %}Журнал відвідування{% endblock title %}
+{% block content %}
+
+	  <!-- Starts Students Listing -->
+	  <table class="table table-hover table-striped">
+	    <thead>
+		  <tr>
+		    <th>#</th>
+			<th>Студент</th>
+			<th>Ср<br>1</th>
+			<th>Чт<br>2</th>
+			<th>Пт<br>3</th>
+			<th>Сб<br>4</th>
+			<th>Нд<br>5</th>
+			<th>Пн<br>6</th>
+			<th>Вт<br>7</th>
+			<th>Ср<br>8</th>
+			<th>Чт<br>9</th>
+			<th>Пт<br>10</th>
+			<th>Сб<br>11</th>
+			<th>Нд<br>12</th>
+			<th>Пн<br>13</th>
+			<th>Вт<br>14</th>
+			<th>Ср<br>15</th>
+			<th>Чт<br>16</th>
+			<th>Пт<br>17</th>
+			<th>Сб<br>18</th>
+			<th>Нд<br>19</th>
+			<th>Пн<br>20</th>
+			<th>Вт<br>21</th>
+			<th>Ср<br>22</th>
+			<th>Чт<br>23</th>
+			<th>Пт<br>24</th>
+			<th>Сб<br>25</th>
+			<th>Нд<br>26</th>
+			<th>Пн<br>27</th>
+			<th>Вт<br>28</th>
+			<th>Ср<br>29</th>
+			<th>Чт<br>30</th>
+			<th>Пт<br>31</th>
+        </tr>
+		</thead>
+
+		<tbody>
+		{% for journal_student in journal_students %}
+		  <tr>
+		    <td>{{ forloop.counter }}</td>
+			<td><a href="{% url "students_edit" journal_student.id %}">{{ journal_student.name }}</a></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox" ></td>
+			<td><input type="checkbox" ></td>
+			<td><input type="checkbox" ></td>
+			<td><input type="checkbox" ></td>
+			<td><input type="checkbox" ></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox" ></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+			<td><input type="checkbox"/></td>
+</tr>
+
+  {% endfor %}
+	  </tbody>
+	</table>
+
+    <!-- End Content Columns -->
+{% include "students/pagination.html" %}
+
+{% endblock content %}
+

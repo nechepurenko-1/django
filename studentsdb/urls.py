@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from .settings import MEDIA_ROOT, DEBUG
 
 urlpatterns = patterns('',
                        url(r'^$','students.views.students.students_list',name='home'),
@@ -33,3 +34,7 @@ urlpatterns = patterns('',
                        url(r'^journal/$', 'students.views.journal.journal', name='journal'),
                        url(r'^journal/(?P<gid>\d+)/edit/$', 'students.views.journal.journal_edit', name='journal_edit'),
                        )
+
+if DEBUG:
+    #serve files from media folder
+    urlpatterns += patterns('',url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}))
