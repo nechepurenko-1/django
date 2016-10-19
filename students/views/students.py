@@ -9,7 +9,7 @@ def students_list(request):
 	students = Student.objects.all()
 	#try to order srudents list
 	order_by = request.GET.get('order_by','')
-	if order_by in ('last_name','first_name','ticket', 'id'):
+	if order_by in ('last_name','first_name','ticket', 'id','student_group'):
 		students = students.order_by(order_by)
 		if request.GET.get('reverse', '') == '1':
 			students = students.reverse()
