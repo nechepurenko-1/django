@@ -1,0 +1,29 @@
+
+*** These modified files were found in JOE when it aborted on Wed Oct 19 21:16:07 2016
+*** JOE was aborted by UNIX signal 1
+
+*** Файл '(БезИмени)'
+/data/work/virtualenvs/studentsdb/src/studentsdb/.git/COMMIT_EDITMSG
+
+*** Файл '/data/work/virtualenvs/studentsdb/src/studentsdb/.git/COMMIT_EDITMSG'
+# Please enter the commit message for your changes. Lines starting
+
+
+# with '#' will be ignored, and an empty message aborts the commit.
+# В ветке master
+# Изменения для закрепления:
+#	modified:   students/admin.py
+#	modified:   students/admin.pyc
+#	modified:   students/models.py
+#	modified:   students/models.pyc
+#	modified:   students/templates/students/groups_list.html
+#	modified:   students/templates/students/pagination.html
+#	modified:   students/templates/students/students_list.html
+#	modified:   students/views/groups.py
+#	modified:   students/views/groups.pyc
+#	modified:   students/views/students.pyc
+#
+# Несопровождаемые файлы:
+#	students/migrations/0002_auto_20161019_1723.py
+#	students/migrations/0002_auto_20161019_1723.pyc
+#
