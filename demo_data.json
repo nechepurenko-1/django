@@ -1,0 +1,503 @@
+[
+{
+    "fields": {
+        "model": "logentry",
+        "name": "log entry",
+        "app_label": "admin"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 1
+},
+{
+    "fields": {
+        "model": "permission",
+        "name": "permission",
+        "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 2
+},
+{
+    "fields": {
+        "model": "group",
+        "name": "group",
+        "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 3
+},
+{
+    "fields": {
+        "model": "user",
+        "name": "user",
+        "app_label": "auth"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 4
+},
+{
+    "fields": {
+        "model": "contenttype",
+        "name": "content type",
+        "app_label": "contenttypes"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 5
+},
+{
+    "fields": {
+        "model": "session",
+        "name": "session",
+        "app_label": "sessions"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 6
+},
+{
+    "fields": {
+        "model": "student",
+        "name": "\u0421\u0442\u0443\u0434\u0435\u043d\u0442",
+        "app_label": "students"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 7
+},
+{
+    "fields": {
+        "model": "group",
+        "name": "\u0413\u0440\u0443\u043f\u0430",
+        "app_label": "students"
+    },
+    "model": "contenttypes.contenttype",
+    "pk": 8
+},
+{
+    "fields": {
+        "expire_date": "2016-11-02T18:44:51.829Z",
+        "session_data": "OTBkYWY0YzU2NDQ1YWQ5ODEzZjYyZDMxNGViNDc1ZmFmYzZjZmY5Mjp7Il9hdXRoX3VzZXJfaGFzaCI6IjBiNDg4MjY5MDU2NGUyYzQzYjAxNWRlZmUzOWZjZmI4NzMxYzcxYjMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9"
+    },
+    "model": "sessions.session",
+    "pk": "0bbufy3sx5xxl8j8cmfiqyocx2r336rw"
+},
+{
+    "fields": {
+        "first_name": "Vova",
+        "last_name": "\u041d\u0435\u0447\u0435\u043f\u0443\u0440\u0435\u043d\u043a\u043e",
+        "middle_name": "ldsakjfkdsjflk",
+        "photo": "",
+        "notes": "sad",
+        "student_group": 1,
+        "birthday": "2016-10-19",
+        "ticket": "123"
+    },
+    "model": "students.student",
+    "pk": 1
+},
+{
+    "fields": {
+        "first_name": "\u0410\u043d\u0434\u0440\u0435\u0439",
+        "last_name": "\u0421\u043e\u0440\u043e\u043a\u0430",
+        "middle_name": "retr",
+        "photo": "./1_mZysXiX.jpeg",
+        "notes": "dfdsfsfd",
+        "student_group": 2,
+        "birthday": "2016-10-19",
+        "ticket": "444"
+    },
+    "model": "students.student",
+    "pk": 2
+},
+{
+    "fields": {
+        "first_name": "\u0416\u0435\u043d\u044f",
+        "last_name": "\u0421\u0438\u043f\u043b\u0438\u0432\u0438\u0439",
+        "middle_name": "dsfds",
+        "photo": "",
+        "notes": "",
+        "student_group": 2,
+        "birthday": "2016-10-19",
+        "ticket": "333"
+    },
+    "model": "students.student",
+    "pk": 3
+},
+{
+    "fields": {
+        "first_name": "qwe",
+        "last_name": "s\u0432\u0430\u0432\u0456\u0430",
+        "middle_name": "qweqw",
+        "photo": "./2_OaEQcQj.jpeg",
+        "notes": "",
+        "student_group": 3,
+        "birthday": "2016-10-19",
+        "ticket": "123213"
+    },
+    "model": "students.student",
+    "pk": 4
+},
+{
+    "fields": {
+        "notes": "asdasd",
+        "leader": null,
+        "title": "group1"
+    },
+    "model": "students.group",
+    "pk": 1
+},
+{
+    "fields": {
+        "notes": "sdffdsfdsf",
+        "leader": null,
+        "title": "gfffff"
+    },
+    "model": "students.group",
+    "pk": 2
+},
+{
+    "fields": {
+        "notes": "weqwqe",
+        "leader": 4,
+        "title": "kkkkkk"
+    },
+    "model": "students.group",
+    "pk": 3
+},
+{
+    "fields": {
+        "codename": "add_logentry",
+        "name": "Can add log entry",
+        "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 1
+},
+{
+    "fields": {
+        "codename": "change_logentry",
+        "name": "Can change log entry",
+        "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 2
+},
+{
+    "fields": {
+        "codename": "delete_logentry",
+        "name": "Can delete log entry",
+        "content_type": 1
+    },
+    "model": "auth.permission",
+    "pk": 3
+},
+{
+    "fields": {
+        "codename": "add_permission",
+        "name": "Can add permission",
+        "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 4
+},
+{
+    "fields": {
+        "codename": "change_permission",
+        "name": "Can change permission",
+        "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 5
+},
+{
+    "fields": {
+        "codename": "delete_permission",
+        "name": "Can delete permission",
+        "content_type": 2
+    },
+    "model": "auth.permission",
+    "pk": 6
+},
+{
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add group",
+        "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 7
+},
+{
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change group",
+        "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 8
+},
+{
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete group",
+        "content_type": 3
+    },
+    "model": "auth.permission",
+    "pk": 9
+},
+{
+    "fields": {
+        "codename": "add_user",
+        "name": "Can add user",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 10
+},
+{
+    "fields": {
+        "codename": "change_user",
+        "name": "Can change user",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 11
+},
+{
+    "fields": {
+        "codename": "delete_user",
+        "name": "Can delete user",
+        "content_type": 4
+    },
+    "model": "auth.permission",
+    "pk": 12
+},
+{
+    "fields": {
+        "codename": "add_contenttype",
+        "name": "Can add content type",
+        "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 13
+},
+{
+    "fields": {
+        "codename": "change_contenttype",
+        "name": "Can change content type",
+        "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 14
+},
+{
+    "fields": {
+        "codename": "delete_contenttype",
+        "name": "Can delete content type",
+        "content_type": 5
+    },
+    "model": "auth.permission",
+    "pk": 15
+},
+{
+    "fields": {
+        "codename": "add_session",
+        "name": "Can add session",
+        "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 16
+},
+{
+    "fields": {
+        "codename": "change_session",
+        "name": "Can change session",
+        "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 17
+},
+{
+    "fields": {
+        "codename": "delete_session",
+        "name": "Can delete session",
+        "content_type": 6
+    },
+    "model": "auth.permission",
+    "pk": 18
+},
+{
+    "fields": {
+        "codename": "add_student",
+        "name": "Can add \u0421\u0442\u0443\u0434\u0435\u043d\u0442",
+        "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 19
+},
+{
+    "fields": {
+        "codename": "change_student",
+        "name": "Can change \u0421\u0442\u0443\u0434\u0435\u043d\u0442",
+        "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 20
+},
+{
+    "fields": {
+        "codename": "delete_student",
+        "name": "Can delete \u0421\u0442\u0443\u0434\u0435\u043d\u0442",
+        "content_type": 7
+    },
+    "model": "auth.permission",
+    "pk": 21
+},
+{
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add \u0413\u0440\u0443\u043f\u0430",
+        "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 22
+},
+{
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change \u0413\u0440\u0443\u043f\u0430",
+        "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 23
+},
+{
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete \u0413\u0440\u0443\u043f\u0430",
+        "content_type": 8
+    },
+    "model": "auth.permission",
+    "pk": 24
+},
+{
+    "fields": {
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2016-10-19T18:44:51.721Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$PSA4T4PFKErW$CV3R5cxPjmh2sDRWRoyFR0IX3qRUL+9uwacb/5cIVz8=",
+        "email": "wwwolf@ukr.net",
+        "date_joined": "2016-10-19T18:44:45.631Z"
+    },
+    "model": "auth.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:45:33.601Z",
+        "object_repr": "group1",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 1
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:45:53.678Z",
+        "object_repr": "Vova \u041d\u0435\u0447\u0435\u043f\u0443\u0440\u0435\u043d\u043a\u043e",
+        "object_id": "1",
+        "change_message": "",
+        "user": 1,
+        "content_type": 7
+    },
+    "model": "admin.logentry",
+    "pk": 2
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:51:34.742Z",
+        "object_repr": "gfffff",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 3
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:51:39.117Z",
+        "object_repr": "\u0410\u043d\u0434\u0440\u0435\u0439 \u0421\u043e\u0440\u043e\u043a\u0430",
+        "object_id": "2",
+        "change_message": "",
+        "user": 1,
+        "content_type": 7
+    },
+    "model": "admin.logentry",
+    "pk": 4
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:52:06.176Z",
+        "object_repr": "\u0416\u0435\u043d\u044f \u0421\u0438\u043f\u043b\u0438\u0432\u0438\u0439",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 7
+    },
+    "model": "admin.logentry",
+    "pk": 5
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:55:36.883Z",
+        "object_repr": "kkkkkk",
+        "object_id": "3",
+        "change_message": "",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 6
+},
+{
+    "fields": {
+        "action_flag": 1,
+        "action_time": "2016-10-19T18:55:39.645Z",
+        "object_repr": "qwe s\u0432\u0430\u0432\u0456\u0430",
+        "object_id": "4",
+        "change_message": "",
+        "user": 1,
+        "content_type": 7
+    },
+    "model": "admin.logentry",
+    "pk": 7
+},
+{
+    "fields": {
+        "action_flag": 2,
+        "action_time": "2016-10-19T18:55:49.898Z",
+        "object_repr": "kkkkkk (qwe s\u0432\u0430\u0432\u0456\u0430)",
+        "object_id": "3",
+        "change_message": "Changed leader.",
+        "user": 1,
+        "content_type": 8
+    },
+    "model": "admin.logentry",
+    "pk": 8
+}
+]

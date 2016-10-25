@@ -33,6 +33,11 @@ urlpatterns = patterns('',
 
                        url(r'^journal/$', 'students.views.journal.journal', name='journal'),
                        url(r'^journal/(?P<gid>\d+)/edit/$', 'students.views.journal.journal_edit', name='journal_edit'),
+
+                       url(r'^exams/$', 'students.views.exams.exam_list', name='exams'),
+                       url(r'^exams/add/$','students.views.exams.exams_add',name='exams_add'),
+                       url(r'^exams/(?P<eid>\d+)/edit/$','students.views.exams.exams_edit',name='exams_edit'),
+                       url(r'^exams/(?P<eid>\d+)/delete/$','students.views.exams.exam_delete',name='exams_delete'),
                        )
 
 if DEBUG:

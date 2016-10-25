@@ -44,6 +44,9 @@
           <li role="presentation"{% ifequal request.path url %}class="active"{% endifequal %}><a href="{% url "journal" %}">Відвідування</a></li>
           {% url 'groups' as url %}
           <li role="presentation"{% ifequal request.path url %}class="active"{% endifequal %}><a href="{% url "groups" %}">Групи</a></li>
+          {% url 'exams' as url %}
+          <li role="presentation"{% ifequal request.path url %}class="active"{% endifequal %}><a href="{% url "exams" %}">Екзамени</a></li>
+
         </ul>
       </div>
     </div>
