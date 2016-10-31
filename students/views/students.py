@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from ..models.students import Student
 from ..models.groups import Group
 from datetime import datetime
+from PIL import Image
 
 
 def students_list(request):
@@ -88,7 +89,18 @@ def students_add(request):
 
             photo = request.FILES.get('photo')
             if photo:
-                data['photo'] = photo
+                if photo.name.split(".")[-1].lower() not in ('jpg', 'jpeg', 'png', 'gif'):
+                    errors['photo'] = u"Файл має бути одного з наступних типів: jpg, jpeg, png, gif"
+                else:
+                    try:
+                        Image.open(photo)
+                    except Exception:
+                        errors['photo'] = u"Завантажений файл не є файлом зображення або пошкоджений"
+                    else:
+                        if photo.size > 2 * 1024 * 1024:
+                            errors['photo'] = u"Фото занадто велике (розмір файлу має бути менше 2Мб)"
+                        else:
+                            data['photo'] = photo
 
             if not errors:
                 # create student object
