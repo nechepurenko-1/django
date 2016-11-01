@@ -7,6 +7,7 @@ from ..models.students import Student
 from ..models.groups import Group
 from datetime import datetime
 from PIL import Image
+from django.contrib import messages
 
 
 def students_list(request):
@@ -108,13 +109,17 @@ def students_add(request):
                 # save it to database
                 student.save()
                 # redirect user to students list
+                messages.success(request, u'Студента %s %s %s успішно додано!' %
+                                 (data['first_name'],data['middle_name'],data['last_name']))
                 return HttpResponseRedirect(reverse('home'))
             else:
                 # render form with errors and previous user input
+                messages.error(request,u'Виправте наступні помилки!')
                 return render(request, 'students/students_add.html',
                     {'groups': Group.objects.all().order_by('title'),'errors': errors})
         elif request.POST.get('cancel_button') is not None:
             # redirect to home page on cancel button
+            messages.warning(request,u'Додавання студента скасовано!')
             return HttpResponseRedirect(reverse('home'))
     else:
         # initial form render
