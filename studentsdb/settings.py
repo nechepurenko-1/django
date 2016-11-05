@@ -15,6 +15,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 from django.conf import global_settings
 import os
 import db
+import mail
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -84,6 +85,8 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 DATABASES = db.DATABASES
 
 
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -111,3 +114,11 @@ TEMPLATE_CONTEXT_PROCESSORS = \
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+ADMIN_EMAIL = mail.ADMIN_EMAIL
+EMAIL_HOST = mail.EMAIL_HOST
+EMAIL_PORT = mail.EMAIL_PORT
+EMAIL_HOST_USER = mail.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = mail.EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = mail.EMAIL_USE_TLS
+EMAIL_USE_SSL = mail.EMAIL_USE_SSL

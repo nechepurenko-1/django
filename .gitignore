@@ -1,4 +1,5 @@
 studentsdb/db.py
+studentsdb/mail.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
