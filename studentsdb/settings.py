@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'crispy_forms',
 	'students',
 )
 
@@ -90,7 +91,7 @@ DATABASES = db.DATABASES
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -122,3 +123,6 @@ EMAIL_HOST_USER = mail.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = mail.EMAIL_HOST_PASSWORD
 EMAIL_USE_TLS = mail.EMAIL_USE_TLS
 EMAIL_USE_SSL = mail.EMAIL_USE_SSL
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
