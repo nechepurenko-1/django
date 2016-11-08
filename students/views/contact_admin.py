@@ -32,6 +32,7 @@ class ContactForm(forms.Form):
         self.helper.add_input(Submit('send_button', u'Надіслати'))
 
 
+
     from_email = forms.EmailField(label=u'Ваша Емейл Адреса')
     subject = forms.CharField(label=u"Заголовок листа",max_length=128)
     message = forms.CharField(label=u"Текст повідомлення",widget=forms.Textarea)
