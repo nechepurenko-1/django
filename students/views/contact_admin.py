@@ -93,3 +93,4 @@ class ContactView(FormView):
 #
 #
 #     return render(request, 'contact_admin/form.html',{'form':form})
+
