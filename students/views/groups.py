@@ -3,6 +3,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import DeleteView
+from django.contrib import messages
+from django.core.urlresolvers import reverse
+
 from ..models.groups import Group
 
 def groups_list(request):
@@ -42,5 +46,13 @@ def groups_add(request):
 def groups_edit(request, gid):
 	return HttpResponse('<h1>Edit Group %s</h1>' %gid)
 
-def groups_delete(request, gid):
-	return HttpResponse('<h1>Delete Group %s</h1>' %gid)
+# def groups_delete(request, gid):
+# 	return HttpResponse('<h1>Delete Group %s</h1>' %gid)
+
+class GroupDeleteView(DeleteView):
+    model = Group
+    template_name = 'students/groups_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.success(self.request, u'Групу успішно видалено!' )
+        return reverse('groups')

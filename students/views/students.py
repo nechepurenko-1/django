@@ -9,7 +9,7 @@ from datetime import datetime
 from PIL import Image
 from django.contrib import messages
 from django import forms
-from django.views.generic import UpdateView, CreateView
+from django.views.generic import UpdateView, CreateView, DeleteView
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -153,10 +153,9 @@ class StudentAddForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
         # add buttons
-        self.helper.layout.fields.append(FormActions(
-        Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-        Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
-        ))
+        self.helper.add_input(Submit('save_button', u'Зберегти', css_class='btn btn-primary'))
+        self.helper.add_input(Submit('cancel_button', u'Скасувати', css_class='btn btn-link'))
+
 
 class StudentAddView(CreateView):
     model = Student
@@ -206,10 +205,13 @@ class StudentUpdateForm(ModelForm):
         self.helper.label_class = 'col-sm-2 control-label'
         self.helper.field_class = 'col-sm-10'
         # add buttons
-        self.helper.layout.fields.append(FormActions(
-        Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-        Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
-        ))
+
+        self.helper.add_input(Submit('save_button', u'Зберегти', css_class='btn btn-primary'))
+        self.helper.add_input(Submit('cancel_button', u'Скасувати', css_class='btn btn-link'))
+        # self.helper.layout.fields.append(FormActions(
+        # Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
+        # Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+        # ))
 
 
 class StudentUpdateView(UpdateView):
@@ -231,15 +233,48 @@ class StudentUpdateView(UpdateView):
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             messages.warning(self.request, u'Редагування студента відмінено!')
+
             return HttpResponseRedirect(reverse('home'))
         else:
             return super(StudentUpdateView, self).post(request,*args,**kwargs)
 
+
+class StudentDeleteView(DeleteView):
+    model = Student
+    template_name = 'students/students_confirm_delete.html'
+
+    def get_success_url(self):
+        messages.success(self.request, u'Студента успішно видалено!' )
+        return reverse('home')
 
 
 # def students_edit(request, sid):
 # 	return HttpResponse('<h1>Edit Student %s</h1>' %sid)
 
 def students_delete(request, sid):
-    return HttpResponse('<h1>Delete Student %s</h1>' %sid)
+    try:
+        student = Student.objects.get(pk=sid)
+    # import pdb;pdb.set_trace()
+    except:
+        messages.error(request, 'Даного студента не існує.')
+        return HttpResponseRedirect(reverse('home'))
+
+    if request.method == "POST":
+
+        if request.POST.get('confirm_button') is not None:
+            student = Student.objects.get(pk=sid)
+            student.delete()
+            messages.success(request, "Успішно видалено: %s." % student)
+            return HttpResponseRedirect(reverse('home'))
+        elif request.POST.get('cancel_button') is not None:
+            messages.warning(request, "Видалення студента скасовано.")
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            messages.error(request, "Упс! Щось пішло не так. Повторіть спробу пізніше.")
+            return HttpResponseRedirect(reverse('home'))
+    else:
+        return render(request,
+                      'students/students_delete_hand.html',{'student':student })
+
+
 
