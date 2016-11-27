@@ -1,0 +1,20 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Видалення групи{% endblock meta_title %}
+{% block title %}Видалення групи {{student}}{% endblock title %}
+
+{% block content %}
+
+<form enctype="multipart/form-data" class="form-horizontal" action="{% url "groups_delete_hand" group.id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <input class="btn btn-danger" type="submit" value="Так" name="confirm_button"/>
+        <button class="btn btn-default" type="submit" name="cancel_button">Ні</button>
+    </div>
+</form>
+
+
+
+{% endblock content %}

@@ -7,6 +7,7 @@
 {% block content %}
 
         <a href="{% url "groups_add" %}" class="btn btn-primary">Додати Групу</a>
+        <a href="{% url "groups_add_form" %}" class="btn btn-primary">Додати Групу Form Class</a>
 
         <!-- Start Students Listing -->
         <table class="table">
@@ -49,9 +50,11 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
+                    <li><a href="{% url "groups_edit" group.id %}">Редагувати_Form</a></li>
+                    <li><a href="{% url "groups_edit_hand" group.id %}">Редагувати_вручну</a></li>
                     <li><a href="{% url "journal_edit"  group.id %}">Відвідування</a></li>
                     <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
+                    <li><a href="{% url "groups_delete_hand" group.id %}">Видалити_вручну</a></li>
                   </ul>
                 </div>
               </td>

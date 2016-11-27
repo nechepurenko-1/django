@@ -248,8 +248,103 @@ class StudentDeleteView(DeleteView):
         return reverse('home')
 
 
-# def students_edit(request, sid):
-# 	return HttpResponse('<h1>Edit Student %s</h1>' %sid)
+def students_edit_hand(request, sid):
+    students = Student.objects.filter(pk=sid)
+    groups = Group.objects.all()
+
+    if len(students) !=1:
+        messages.error(request, 'Обраного студента не існує')
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        if request.method == "POST":
+            student = Student.objects.get(pk=sid)
+
+            if request.POST.get('save_button') is not None:
+                student.middle_name = request.POST.get('first_name', '').strip()
+                student.notes = request.POST.get('notes', '').strip()
+                errors = {}
+                first_name = request.POST.get('first_name', '').strip()
+                if not first_name:
+                    errors['first_name'] = u"Імʼя є обовʼязковим."
+                else:
+                    student.first_name = first_name
+                last_name = request.POST.get('last_name', '').strip()
+                if not last_name:
+                    errors['last_name'] = u"Прізвище є обов’язковим"
+                else:
+                    student.last_name = last_name
+
+                birthday = request.POST.get('birthday', '').strip()
+                if not birthday:
+                        errors['birthday'] = u"Дата народження є обов’язковою"
+                else:
+                    try:
+                        datetime.strptime(birthday, '%Y-%m-%d')
+                    except Exception:
+                        errors['birthday'] ='Введіть коректний формат дати(напр.1984-12-30)'
+                    else:
+                        student.birthday = birthday
+
+                ticket = request.POST.get('ticket', '').strip()
+                if not ticket:
+                    errors['ticket'] = u"Номер білета є обов’язковим"
+                else:
+                    student.ticket = ticket
+
+
+                student_group = request.POST.get('student_group', '').strip()
+                if not student_group:
+                    errors['student_group'] = u"Група є обовʼязковою"
+                else:
+                    group = Group.objects.filter(pk=student_group)
+                if len(group) != 1:
+                    errors['student_group'] = u"Оберіть коректну групу"
+                else:
+                    grps = Group.objects.filter(leader=Student.objects.get(pk=sid))
+                    if len(grps) > 0 and int(student_group) != grps[0].pk:
+                        errors['student_group'] = u"Студент є старостою іншої групи"
+                    else:
+                        student.student_group = group[0]
+
+                if request.POST.get('photo-clear') is not None:
+                    student.photo = None
+                else:
+                    photo = request.FILES.get('photo')
+                    if photo:
+                        if photo.name.split(".")[-1].lower() not in ('jpg', 'jpeg', 'png', 'gif'):
+                            errors['photo'] = u"Файл має бути одного з наступних типів: jpg, jpeg, png, gif"
+                        else:
+                            try:
+                                Image.open(photo)
+                            except Exception:
+                                errors['photo'] = u"Завантажений файл не є файлом зображення або пошкоджений"
+                            else:
+                                if photo.size > 2 * 1024 * 1024:
+                                    errors['photo'] = u"Фото занадто велике (розмір файлу має бути менше 2Мб)"
+                                else:
+                                    student.photo = photo
+                if errors:
+                    messages.error(request,u'Виправте наступні помилки!')
+                    return render(request, 'students/students_edit_hand.html',
+                                  {'groups': groups,'errors': errors,'student':student , 'pk':sid})
+                else:
+                    student.save()
+                    messages.success(request, u'Студента успішно збереженно!')
+                    return HttpResponseRedirect(reverse('home'))
+
+            elif request.POST.get('cancel_button') is not None:
+                messages.warning(request, 'Редагування студента скасовано.')
+                return HttpResponseRedirect(reverse('home'))
+            else:
+                messages.error(request, 'Упс! Щось пішло не так. Повторіть спробу пізніше.')
+                return HttpResponseRedirect(reverse('home'))
+        else:
+            return render(request,'students/students_edit_hand.html',{'pk': sid, 'student': students[0],
+                                                                 'groups': groups.order_by('title')})
+
+
+
+
 
 def students_delete(request, sid):
     try:
