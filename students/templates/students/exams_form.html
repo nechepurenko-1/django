@@ -1,0 +1,15 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+{% block meta_title %}{{ title }}{% endblock meta_title %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+
+    {% crispy form %}
+
+
+
+{% endblock content %}

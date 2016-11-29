@@ -7,6 +7,7 @@
 {% block content %}
 
         <a href="{% url "exams_add" %}" class="btn btn-primary">Додати Екзамен</a>
+        <a href="{% url "exams_add_form" %}" class="btn btn-primary">Додати Екзамен_Form</a>
 
         <!-- Start Students Listing -->
         <table class="table">
@@ -47,7 +48,7 @@
             <tr>
               <td>{{ exam.id }}</td>
               <td><a href="{% url "exams_edit" exam.id %}">{{ exam.title   }}</td>
-              <td><a href="{% url "exams_edit" exam.id %}">{{ exam.date_exam }}</td>
+              <td><a href="{% url "exams_edit" exam.id %}">{{ exam.date_exam|date:"Y-m-d - H:m" }}</td>
               <td><a href="{% url "exams_edit" exam.id %}">{{ exam.teacher }}</td>
               {% if exam.group.id %}
               <td><a href="{% url "exams_edit" exam.group.id %}"> {{ exam.group.title }} </td>
@@ -63,8 +64,10 @@
                   </button>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Результати</a></li>
-                    <li><a href="{% url "exams_edit" exam.id %}">Редагувати</a></li>
-                    <li><a href="{% url "exams_delete" exam.id %}">Видалити</a></li>
+                    <li><a href="{% url "exams_edit" exam.id %}">Редагувати Form</a></li>
+                    <li><a href="{% url "exams_edit_hand" exam.id %}">Редагувати вручну</a></li>
+                    <li><a href="{% url "exams_delete" exam.id %}">Видалити Form</a></li>
+                    <li><a href="{% url "exams_delete_hand" exam.id %}">Видалити вручну</a></li>
                   </ul>
                 </div>
               </td>

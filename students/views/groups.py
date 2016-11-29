@@ -11,9 +11,11 @@ from django.views.generic import UpdateView, CreateView
 from django.forms import ModelForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.utils.encoding import smart_str, smart_unicode
 
 from ..models.groups import Group
 from ..models.students import Student
+from ..models.exams import Exam
 
 
 def groups_list(request):
@@ -71,7 +73,9 @@ def groups_add(request):
                 else:
                     group_leader = Group.objects.filter(leader=student)
                     if len(group_leader) != 0:
-                        errors['leader'] = u"Даний студент є старростою іншої групи"
+                        errors['leader'] = u"Даний студент є старостою іншої групи"
+                    elif student[0].student_group is not None:
+                        errors['leader'] = u"Студент не належить до цієї групи"
                     else:
                         data['leader'] = student[0]
 
@@ -225,8 +229,12 @@ def groups_edit(request, gid):
                     student = Student.objects.filter(pk=int(leader))
                     if len(student) != 1:
                         errors['leader'] = u"Оберіть коректного студента"
+
+                    elif student[0].student_group.id != group.id:
+                        errors['leader'] = u"Студент не належить до цієї групи"
                     else:
                         group_leader = Group.objects.filter(leader=student)
+                        # import pdb;pdb.set_trace()
                         if len(group_leader) != 0 and int(leader) != group.leader.id:
                             errors['leader'] = u"Даний студент є старростою іншої групи"
                         else:
@@ -274,8 +282,15 @@ def groups_delete(request, gid):
         if request.POST.get('confirm_button') is not None:
             group = Group.objects.get(pk=gid)
             gr_students = Student.objects.filter(student_group = group)
+            exam = Exam.objects.filter(group = group)
             if len(gr_students) != 0:
                 messages.error(request, 'В даній групі є студенти.')
+                return HttpResponseRedirect(reverse('groups'))
+            elif len(exam) != 0:
+                ex = ''
+                for item in exam:
+                    ex = ex + " " + str(item) + ","
+                messages.error(request, 'В даній групі є екзамени %s.' % ex.strip(","))
                 return HttpResponseRedirect(reverse('groups'))
             else:
                 group.delete()
