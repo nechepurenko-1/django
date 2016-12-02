@@ -48,7 +48,7 @@
             <tr>
               <td>{{ exam.id }}</td>
               <td><a href="{% url "exams_edit" exam.id %}">{{ exam.title   }}</td>
-              <td><a href="{% url "exams_edit" exam.id %}">{{ exam.date_exam|date:"Y-m-d - H:m" }}</td>
+              <td><a href="{% url "exams_edit" exam.id %}">{{ exam.date_exam|date:"Y-m-d - H:m:s" }}</td>
               <td><a href="{% url "exams_edit" exam.id %}">{{ exam.teacher }}</td>
               {% if exam.group.id %}
               <td><a href="{% url "exams_edit" exam.group.id %}"> {{ exam.group.title }} </td>
