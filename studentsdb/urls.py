@@ -20,6 +20,7 @@ from students.views.contact_admin import ContactView
 from students.views.students import  StudentUpdateView, StudentAddView, StudentDeleteView
 from students.views.groups import  GroupDeleteView ,GroupUpdateView, GroupAddView
 from students.views.exams import ExamsDeleteView, ExamsAddView, ExamsUpdateView
+from students.views.journal import JournalView
 
 
 urlpatterns = patterns('',
@@ -42,7 +43,7 @@ urlpatterns = patterns('',
 
 					   url(r'^admin/', include(admin.site.urls)),
 
-                       url(r'^journal/$', 'students.views.journal.journal', name='journal'),
+                       url(r'^journal/$', JournalView.as_view(), name='journal'),
                        url(r'^journal/(?P<gid>\d+)/edit/$', 'students.views.journal.journal_edit', name='journal_edit'),
 
                        url(r'^exams/$', 'students.views.exams.exam_list', name='exams'),
