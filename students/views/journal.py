@@ -12,6 +12,7 @@ from ..models.monthjournal import MonthJournal
 from ..util import paginate
 
 
+
 # def journal(request):
 # 	journal_students = (
 # 		{'id' : 1,
@@ -41,8 +42,8 @@ class JournalView(TemplateView):
             today = datetime.today()
             month = date(today.year, today.month, 1)
 
-        next_month = month + relativedata(months=1)
-        prev_month = month - relativedata(months=1)
+        next_month = month + relativedelta(months=1)
+        prev_month = month - relativedelta(months=1)
         context['prev_month'] = prev_month.strftime('%Y-%m-%d')
         context['next_month'] = next_month.strftime('%Y-%m-%d')
         context['year'] = month.year
@@ -56,7 +57,7 @@ class JournalView(TemplateView):
 									'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
 								   for d in range(1, number_of_days + 1)]
 
-        queryset = Student.objects.order_by('last_name')
+        queryset = Student.objects.all().order_by('last_name')
         update_url = reverse('journal')
         students = []
         for student in queryset:
@@ -75,7 +76,8 @@ class JournalView(TemplateView):
             students.append({
                 'fullname': u'%s %s' % (student.last_name, student.first_name),
                 'days': days,
+                'id': student.id,
                 'update_url': update_url})
 
-        context = paginate(students, 10, self.request, context, var_name='students')
+        context = paginate(students, 3, self.request, context, var_name='students')
         return context

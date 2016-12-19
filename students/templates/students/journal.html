@@ -11,7 +11,7 @@
 
 <div class="alert alert-warning">
     Поки немає жодного студента в базі. Будь ласка, <a href="{% url "students_add" %}">додайте</a> першого.
-    </div>
+</div>
 {%else%}
 <p id="journal-nav" class="text-center">
     <a href="?month={{ prev_month }}" title="Попередній місяць">&larr;</a>
@@ -38,13 +38,13 @@
     <tr>
         <td>
             {% if is_paginated %}
-                {{ page_obj.start_index|add:forloop.counter|add"-1" }}
+                {{ page_obj.start_index|add:forloop.counter|add:"-1" }}
             {%else%}
                 {{ forloop.counter }}
             {% endif %}
         </td>
          <td>
-             <a title="Редагувати" target="_blank" href="{% url "students_edit" students.id %}">
+             <a title="Редагувати" target="_blank" href="{% url "students_edit_hand" student.id  %}">
                 {{ student.fullname }}
              </a>
          </td>
@@ -59,9 +59,10 @@
     </tbody>
     </table>
 {%endif%}
+
 {% with object_list=students %}
     {% include "students/pagination.html"%}
-{%endwith%}
+{% endwith %}
 
 
 
