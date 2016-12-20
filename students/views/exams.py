@@ -17,39 +17,37 @@ from datetime import datetime
 
 from ..models.exams import Exam
 from ..models.groups import Group
+from ..util import paginate
 
 
 
 def exam_list(request):
-	exams = Exam.objects.all()
-	order_by = request.GET.get('order_by','')
-	if order_by in ('title','date_exam','teacher','group','id'):
-		exams = exams.order_by(order_by)
-		if request.GET.get('reverse', '') == '1':
-			exams = exams.reverse()
-	else:
-	    exams = exams.order_by('title')
+    exams = Exam.objects.all()
+    order_by = request.GET.get('order_by','')
+    if order_by in ('title','date_exam','teacher','group','id'):
+        exams = exams.order_by(order_by)
+        if request.GET.get('reverse', '') == '1':
+            exams = exams.reverse()
+    else:
+        exams = exams.order_by('title')
 
-	# paginate students
-	paginator = Paginator(exams, 3)
-	page = request.GET.get('page')
+    # paginate students
+    # paginator = Paginator(exams, 3)
+    # page = request.GET.get('page')
+    #
+    # try:
+    # 	exams = paginator.page(page)
+    #
+    # except PageNotAnInteger:
+    # 	# if page not an integer, delliver first page
+    # 	exams = paginator.page(1)
+    #
+    # except EmptyPage:
+    # 	#if page is out of range(e.g. 9999) , deliver last page of result
+    # 	exams = paginator.page(paginator.num_pages)
 
-	try:
-		exams = paginator.page(page)
-
-	except PageNotAnInteger:
-		# if page not an integer, delliver first page
-		exams = paginator.page(1)
-
-	except EmptyPage:
-		#if page is out of range(e.g. 9999) , deliver last page of result
-		exams = paginator.page(paginator.num_pages)
-
-
-
-
-	return render(request, 'students/exams_list.html',
-				  {'exams': exams})
+    context = paginate(exams, 3, request,{},var_name='exams')
+    return render(request, 'students/exams_list.html',context)
 
 class ExamsAddForm(ModelForm):
     class Meta:

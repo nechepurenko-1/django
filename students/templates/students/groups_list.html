@@ -65,6 +65,8 @@
         </table>
         <!-- End Students Listing -->
 
-{% include "students/pagination.html" %}
+{% with object_list=groups %}
+    {% include "students/pagination.html"%}
+{% endwith %}
 {% endblock content %}
 
