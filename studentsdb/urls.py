@@ -43,7 +43,7 @@ urlpatterns = patterns('',
 
 					   url(r'^admin/', include(admin.site.urls)),
 
-                       url(r'^journal/$', JournalView.as_view(), name='journal'),
+                       url(r'^journal/(?P<pk>\d+)?/?$', JournalView.as_view(), name='journal'),
                        url(r'^journal/(?P<gid>\d+)/edit/$', 'students.views.journal.journal_edit', name='journal_edit'),
 
                        url(r'^exams/$', 'students.views.exams.exam_list', name='exams'),
