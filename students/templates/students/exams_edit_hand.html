@@ -24,7 +24,7 @@
          <label for="date_exam" class="col-sm-2 control-label">Дата екзамену*</label>
          <div class="col-sm-10">
              <input type="text" value="{% if errors %}{{request.POST.date_exam}}{% else  %}{{exam.date_exam|date:"Y-m-d H:m:s"}}{% endif %}"
-                     name="date_exam" id="date_exam" class="form-control" placeholder="Напр.1984-12-30 12:30:00" />
+                     name="date_exam" id="date_exam" class="datetimeinput form-control" placeholder="Напр.1984-12-30 12:30:00" />
              <span class=”help-block”>{{ errors.date_exam }}</span>
          </div>
         </div>

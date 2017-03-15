@@ -15,11 +15,15 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 from django.core.urlresolvers import reverse_lazy
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 
 def students_list(request):
-    students = Student.objects.all()
+    current_group = get_current_group(request)
+    if current_group:
+        students = Student.objects.filter(student_group=current_group)
+    else:
+        students = Student.objects.all()
     #try to order srudents list
     order_by = request.GET.get('order_by','')
     if order_by in ('last_name','first_name','ticket', 'id','student_group'):

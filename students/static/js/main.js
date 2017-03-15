@@ -27,6 +27,43 @@ function initJournal() {
        });
     }
 
+function initGroupSelector() {
+    $('#group-selector select').change(function (event) {
+        var group = $(this).val();
+
+        if (group) {
+            $.cookie('current_group', group, {'path': '/', 'expires': 365});
+        }
+        else{
+            $.removeCookie('current_group', {'path': '/'});
+        }
+        location.reload(true);
+
+        return true;
+    });
+}
+
+function initDateFields(){
+    $('input.dateinput').datetimepicker({
+        'format': 'YYYY-MM-DD',
+        locale: 'uk'
+    }).on('dp.hide', function(event){
+    $(this).blur();
+    });
+}
+
+function initDateTimeFields(){
+    $('input.datetimeinput').datetimepicker({
+        'format': 'YYYY-MM-DD HH:mm:ss',
+        locale: 'uk'
+    }).on('dp.hide', function(event){
+    $(this).blur();
+    });
+}
+
     $(document).ready(function () {
     initJournal();
+    initGroupSelector();
+    initDateFields();
+    initDateTimeFields();
 });

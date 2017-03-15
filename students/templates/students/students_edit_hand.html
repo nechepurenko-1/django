@@ -47,7 +47,7 @@
          <label for="birthday" class="col-sm-2 control-label">Дата Народження*</label>
          <div class="col-sm-10">
              <input type="text" value="{% if errors %}{{request.POST.birthday}}{% else  %}{{student.birthday|date:"Y-m-d"}}{% endif %}"
-                     name="birthday" id="birthday" class="form-control" placeholder="Напр. 1984-12-30" />
+                     name="birthday" id="birthday" class="dateinput form-control" placeholder="Напр. 1984-12-30" />
              <span class=”help-block”>{{ errors.birthday }}</span>
          </div>
         </div>

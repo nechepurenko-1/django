@@ -17,12 +17,16 @@ from datetime import datetime
 
 from ..models.exams import Exam
 from ..models.groups import Group
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 
 
 def exam_list(request):
-    exams = Exam.objects.all()
+    current_group = get_current_group(request)
+    if current_group:
+        exams = Exam.objects.filter(group=current_group)
+    else:
+        exams = Exam.objects.all()
     order_by = request.GET.get('order_by','')
     if order_by in ('title','date_exam','teacher','group','id'):
         exams = exams.order_by(order_by)

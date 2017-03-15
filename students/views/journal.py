@@ -10,7 +10,7 @@ from django.http import JsonResponse
 
 from ..models.students import Student
 from ..models.monthjournal import MonthJournal
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 
 
@@ -36,7 +36,6 @@ class JournalView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(JournalView, self).get_context_data(**kwargs)
-
         if self.request.GET.get('month'):
             month = datetime.strptime(self.request.GET['month'], '%Y-%m-%d').date()
         else:
@@ -57,9 +56,11 @@ class JournalView(TemplateView):
         context['month_header'] = [{'day': d,
 									'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
 								   for d in range(1, number_of_days + 1)]
-
+        current_group = get_current_group(self.request)
         if kwargs.get('pk'):
             queryset = [Student.objects.get(pk=kwargs['pk'])]
+        elif current_group:
+            queryset = Student.objects.filter(student_group=current_group).order_by('last_name')
         else:
             queryset = Student.objects.all().order_by('last_name')
         update_url = reverse('journal')

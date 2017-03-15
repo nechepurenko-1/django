@@ -16,17 +16,22 @@ from django.utils.encoding import smart_str, smart_unicode
 from ..models.groups import Group
 from ..models.students import Student
 from ..models.exams import Exam
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 def groups_list(request):
-    groups = Group.objects.all()
+    groups = []
+    current_group = get_current_group(request)
+
+    if current_group:
+        groups.append(current_group)
+    else:
+        groups = Group.objects.all()
     order_by = request.GET.get('order_by','')
     if order_by in ('title','leader','id'):
         groups = groups.order_by(order_by)
         if request.GET.get('reverse', '') == '1':
             groups = groups.reverse()
-    else:
-        groups = groups.order_by('title')
+
 
     # paginate students
     # paginator = Paginator(groups, 3)

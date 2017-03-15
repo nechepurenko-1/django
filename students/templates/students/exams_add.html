@@ -22,7 +22,7 @@
          <label for="date_exam" class="col-sm-2 control-label">Дата та час екзамену*</label>
          <div class="col-sm-10">
              <input type="text" value="{{request.POST.date_exam}}" name="date_exam" id="date_exam"
-                    class="form-control" placeholder="Напр.1984-12-30 12:30:00" />
+                    class="datetimeinput form-control" placeholder="Напр.1984-12-30 12:30:00" />
              <span class=”help-block”>{{ errors.date_exam }}</span>
          </div>
         </div>
