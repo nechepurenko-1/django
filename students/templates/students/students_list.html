@@ -62,10 +62,10 @@
 
 
               </td>
-              <td><a href="{% url "students_edit" student.id %}">{{ student.last_name }}</td>
-              <td><a href="{% url "students_edit" student.id %}">{{ student.first_name }}</td>
+              <td><a href="{% url "students_edit" student.id %}" class = "student-edit-form-link" >{{ student.last_name }}</td>
+              <td><a href="{% url "students_edit" student.id %}" class = "student-edit-form-link">{{ student.first_name }}</td>
               {% if student.student_group %}
-              <td><a href="{% url "students_edit" student.id %}">{{ student.student_group}}</td>
+              <td><a href="{% url "students_edit" student.id %}" class = "student-edit-form-link">{{ student.student_group}}</td>
               {% else %}
               <td>------------</td>
               {% endif %}
@@ -77,8 +77,8 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="{% url "students_edit" student.id %}">Редагувати</a></li>
-                    <li><a href="{% url "students_edit_hand" student.id %}">Редагувати_вручну</a></li>
+                    <li><a href="{% url "students_edit" student.id %}" class = "student-edit-form-link">Редагувати</a></li>
+                    <li><a href="{% url "students_edit_hand" student.id %}" class = "student-edit-form-link">Редагувати_вручну</a></li>
                     <li><a href="{% url "journal"  student.id %}">Відвідування</a></li>
                     <li><a href="{% url "students_delete" student.id %}">Видалити_форма</a></li>
                     <li><a href="{% url "students_delete_hand" student.id %}">Видалити_вручну</a></li>
