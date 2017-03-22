@@ -102,10 +102,17 @@
           <h4 class="modal-title" id="myModalLabel"><!-- --></h4>
         </div>
        <div class="modal-body"><!-- --></div>
-       <div class="modal-footer"><!-- --></div>
+       <div class="modal-footer">
+         <div class='ajax-loader-modal'>
+                            <img src='{% static "img/ajax-loader-bert2-white.gif" %}'>
+                        </div>
+       </div>
       </div>
     </div>
   </div>
+
+  <div class="ajax-loader"><img src='{% static "img/ajax-loader-bert2.gif" %}'></div>
+
   <!-- End Container -->
   <!-- Javascripts Inclusion -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
